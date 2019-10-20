@@ -35,14 +35,14 @@ docker run --detach \
            -e TZ="Europe/Berlin" \
            -e WEBPASSWORD=$PW \
            -e ServerIP=$HOSTIP \
+           -e DNS1=127.0.0.1 \
+           -e DNS2=1.1.1.1 \
            --restart=unless-stopped \
            --publish $WEBPORT:80 \
            --publish 8001:443 \
            --publish 53:53 \
            --publish 67:67 \
            --cap-add NET_ADMIN \
-           -e dns=127.0.0.1 \
-           -e dns=1.1.1.1 \
            pihole/pihole
 
 echo "FINISHED"

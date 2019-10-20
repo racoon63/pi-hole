@@ -2,9 +2,11 @@
 
 set -e
 
+IP=$(hostname -I | awk '{ print $1 }')
+
 read -s -p "Please enter your webpassword [supersecret123]: " PW
 echo
-read -p "Please enter the IP address of your pihole: " HOSTIP
+read -p "Please enter the IP address of your pihole [$IP]: " HOSTIP
 
 while [[ ! ${HOSTIP} ]]
 do
@@ -13,12 +15,12 @@ done
 
 read -p "On which port should the pi-hole web interface run? [8000]: " WEBPORT
 
-if [[ $PW -eq "" ]]
+if [[ ! ${PW} ]]
 then
   PW="supersecret123"
 fi
 
-if [[ $WEBPORT -eq "" ]]
+if [[ ! ${WEBPORT} ]]
 then
   WEBPORT=8000
 fi
@@ -29,15 +31,17 @@ docker run --detach \
            --name pihole \
            --volume pihole:/etc/pi-hole \
            --volume pihole:/etc/dnsmasq \
-           --env TZ="Europe/Berlin" \
-           --env WEBPASSWORD=$PW \
-           --env ServerIP=$HOSTIP \
+           -e TZ="Europe/Berlin" \
+           -e WEBPASSWORD=$PW \
+           -e ServerIP=$HOSTIP \
            --restart=unless-stopped \
            --publish $WEBPORT:80 \
            --publish 8001:443 \
            --publish 53:53 \
            --publish 67:67 \
-           --privileged \
+           --cap-add NET_ADMIN \
+           -e dns=127.0.0.1 \
+           -e dns=1.1.1.1 \
            pihole/pihole
 
 echo "FINISHED"

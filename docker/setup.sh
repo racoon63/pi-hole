@@ -23,7 +23,7 @@ read -p "On which port should the pi-hole web interface run? [8080]: " WEBPORT
 
 if [[ ! ${WEBPORT} ]]
 then
-  WEBPORT=8000
+  WEBPORT=8080
 fi
 
 docker volume create pihole

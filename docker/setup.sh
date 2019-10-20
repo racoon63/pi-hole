@@ -37,6 +37,7 @@ docker run --detach \
            --publish 8001:443 \
            --publish 53:53 \
            --publish 67:67 \
+           --privileged \
            pihole/pihole
 
 echo "FINISHED"

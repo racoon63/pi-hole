@@ -12,10 +12,10 @@ docker volume create pihole
 sudo mkdir -p /var/run/docker/volumes/pihole/pihole
 sudo mkdir -p /var/run/docker/volumes/pihole/dnsmasq
 
-docker run -d \
+docker run --detach \
            --name pihole \
-           --volume pihole/pihole:/etc/pi-hole \
-           --volume pihole/dnsmasq:/etc/dnsmasq \
+           --volume pihole:/etc/pi-hole \
+           --volume pihole:/etc/dnsmasq \
            --env TZ="Europe/Berlin" \
            --env WEBPASSWORD=$PW \
            --env ServerIP=$HOSTIP \

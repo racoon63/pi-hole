@@ -5,20 +5,21 @@ set -e
 IP=$(hostname -I | awk '{ print $1 }')
 
 read -s -p "Please enter your webpassword [supersecret123]: " PW
-echo
-read -p "Please enter the IP address of your pihole [$IP]: " HOSTIP
-
-while [[ ! ${HOSTIP} ]]
-do
-  read -p "Please enter the IP address of your pihole: " HOSTIP
-done
-
-read -p "On which port should the pi-hole web interface run? [8000]: " WEBPORT
 
 if [[ ! ${PW} ]]
 then
   PW="supersecret123"
 fi
+
+echo
+read -p "Please enter the IP address of your pihole [$IP]: " HOSTIP
+
+if [[ ! ${HOSTIP} ]]
+then
+  HOSTIP=$IP
+fi
+
+read -p "On which port should the pi-hole web interface run? [8080]: " WEBPORT
 
 if [[ ! ${WEBPORT} ]]
 then

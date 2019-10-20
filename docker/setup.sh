@@ -2,14 +2,14 @@
 
 set -e
 
-read -s -p "Please enter your webpassword [supersecret123]: " PW
-read -p "Please enter the IP address of your pihole: " HOSTIP
+read -s -p "Please enter your webpassword [supersecret123]: \n" PW
+read -p "Please enter the IP address of your pihole: \n" HOSTIP
 read -p "On which port should the pi-hole web interface run? [8000]: " WEBPORT
 
 docker volume create pihole
 
-mkdir -p /var/run/docker/volumes/pihole/pihole
-mkdir -p /var/run/docker/volumes/pihole/dnsmasq
+sudo mkdir -p /var/run/docker/volumes/pihole/pihole
+sudo mkdir -p /var/run/docker/volumes/pihole/dnsmasq
 
 docker run -d \
            --name pihole \

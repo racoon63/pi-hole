@@ -6,19 +6,19 @@ read -s -p "Please enter your webpassword [supersecret123]: " PW
 echo
 read -p "Please enter the IP address of your pihole: " HOSTIP
 
-while [ $HOSTIP == "" ]
+while [ $HOSTIP -eq "" ]
 do
   read -p "Please enter the IP address of your pihole: " $HOSTIP
 done
 
 read -p "On which port should the pi-hole web interface run? [8000]: " WEBPORT
 
-if [ $PW == "" ]
+if [ $PW -eq "" ]
 then
   PW="supersecret123"
 fi
 
-if [ $WEBPORT == "" ]
+if [ $WEBPORT -eq "" ]
 then
   WEBPORT=8000
 fi

@@ -3,7 +3,9 @@
 set -e
 
 read -s -p "Please enter your webpassword [supersecret123]: \n" PW
+
 read -p "Please enter the IP address of your pihole: \n" HOSTIP
+
 read -p "On which port should the pi-hole web interface run? [8000]: " WEBPORT
 
 docker volume create pihole

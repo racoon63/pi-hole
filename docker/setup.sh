@@ -8,7 +8,7 @@ read -p "Please enter the IP address of your pihole: " HOSTIP
 
 while [[ ! ${HOSTIP} ]]
 do
-  read -p "Please enter the IP address of your pihole: " $HOSTIP
+  read -p "Please enter the IP address of your pihole: " HOSTIP
 done
 
 read -p "On which port should the pi-hole web interface run? [8000]: " WEBPORT

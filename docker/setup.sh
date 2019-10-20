@@ -30,7 +30,7 @@ docker volume create pihole
 
 docker run --detach \
            --name pihole \
-           --volume pihole:/etc/pi-hole \
+           --volume pihole:/etc/pihole \
            --volume pihole:/etc/dnsmasq \
            -e TZ="Europe/Berlin" \
            -e WEBPASSWORD=$PW \

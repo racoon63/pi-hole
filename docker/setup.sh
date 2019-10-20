@@ -6,7 +6,7 @@ read -s -p "Please enter your webpassword [supersecret123]: " PW
 echo
 read -p "Please enter the IP address of your pihole: " HOSTIP
 
-while [[ $HOSTIP -eq "" ]]
+while [[ ! ${HOSTIP} ]]
 do
   read -p "Please enter the IP address of your pihole: " $HOSTIP
 done

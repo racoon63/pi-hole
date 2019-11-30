@@ -1,16 +1,19 @@
 FROM pihole/pihole
 
+ENV DNS1=1.1.1.1
+ENV DNS2=8.8.8.8
+ENV DNSMASQ_LISTENING=
+ENV DNSMASQ_USER=
+ENV DNSSEC=true
+ENV IPv6=
+ENV INTERFACE=
+ENV ServerIP='0.0.0.0'
+ENV ServerIPv6=
 ENV TZ='Europe/Berlin'
+ENV VIRTUAL_HOST=
+ENV WEB_PORT=
 ENV WEBPASSWORD='supersecret1234'
 
-COPY *.list /pihole
-
-EXPOSE 53:53/tcp
-EXPOSE 53:53/udp
-EXPOSE 67:67/udp
-EXPOSE 80:80/tcp
-EXPOSE 443:443/tcp
+COPY etc/lists /etc/pihole/
 
 WORKDIR /
-
-ENTRYPOINT ["/s6-init"]

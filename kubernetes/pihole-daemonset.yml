@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: pihole-daemonset
+  labels:
+    app: pihole
+spec:
+  template:
+    metadata:
+      name: pihole
+      labels:
+        app: pihole
+    spec:
+      containers: 
+      - name: pihole
+        image: pihole/pihole
+        ports:
+        - name: dns
+          containerPort: 53
+          protocol: TCP
+        - name: dhcp
+          containerPort: 67
+          protocol: TCP
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        - name: https
+          containerPort: 443
+          protocol: TCP
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: pihole

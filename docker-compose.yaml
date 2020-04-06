@@ -15,8 +15,9 @@ services:
       WEBPASSWORD: 'supersecret1234'
     # Volumes store your data between container upgrades
     volumes:
-      - 'pihole:/etc/pihole/'
+      - 'pihole:/etc/pihole/adlist.txt'
       - 'pihole:/etc/dnsmasq.d/'
+      #- '/lists/:/etc/pihole/'
     dns:
       - 127.0.0.1
       - 1.1.1.1
